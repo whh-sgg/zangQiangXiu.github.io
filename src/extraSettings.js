@@ -9,7 +9,7 @@ let extraScore = 1;
 let wuDi = true;
 
 // 第一个水果：修改数字为 0-10, 0 为葡萄，9 为半个西瓜
-let firstFruit = 9;
+let firstFruit = 0;
 
 // 水果合成反转：false 改为 true
 let reverseLevelUp = false;
@@ -29,7 +29,7 @@ let setFruits = {
 let fruitQTan = false;
 
 // 让水果下落缓慢：false 改为大于 0 的任意数，值越大阻力越大，下落越慢（推荐 5）
-let fruitSlowDown = 1;
+let fruitSlowDown = 1.5;
 
 // 点击右上方图标更换水果：false 改为 true 即可
 let clickChangeFruit = true;
