@@ -66,6 +66,8 @@
 
 </head>
 
+
+
 <body style="margin: 0; background: #ddd;" align="center">
     <div style="align:center;display: none"><img src="res/share.jpg" width="10%" /></div>
 
@@ -97,10 +99,100 @@
     </div>
 
 
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <!-- 在此处添加产品信息 -->
+            <div class = "information">
+                <img src="res/raw-assets/d0/d0c676e4-0956-4a03-90af-fee028cfabe4.png">
+                <h2>产品标题</h2>
+                <p>产品描述...</p>
+            </div>
+            <!-- 更多产品信息 -->
+            <div class = "information">
+                <img src="res/raw-assets/5f/5fa0264d-acbf-4a7b-8923-c106ec3b9215.png">
+                <h2>产品标题</h2>
+                <p>产品描述...</p>
+            </div>
+            <div class = "information">
+                <img src="res/raw-assets/50/5035266c-8df3-4236-8d82-a375e97a0d9c.png">
+                <h2>产品标题</h2>
+                <p>产品描述...</p>
+            </div>
+            <div class = "information">
+                <img src="res/raw-assets/5f/5fa0264d-acbf-4a7b-8923-c106ec3b9215.png">
+                <h2>产品标题</h2>
+                <p>产品描述...</p>
+            </div>
+            <div class = "information">
+                <img src="res/raw-assets/5f/5fa0264d-acbf-4a7b-8923-c106ec3b9215.png">
+                <h2>产品标题</h2>
+                <p>产品描述...</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="gameStartPrompt">
+        <h1>合成藏羌绣小纹样</h1>
+        <p>游戏即将开始</p>
+        <button onclick="startGame()">开始游戏</button>
+        <button onclick="checkImage()">了解藏羌绣</button>
+    </div>
+
+
+
     <script type="text/javascript" src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
     <script type="text/javascript" src="ads.js"></script>
 
     <script src="src/settings.js" charset="utf-8"></script>
+
+
+    <script type="text/javascript">
+    function startGame() {
+        document.getElementById('gameStartPrompt').style.display = 'none';
+        document.getElementById('backdrop').style.display = 'none';
+
+    }
+    window.onload = function() {
+        document.getElementById('gameStartPrompt').style.display = 'block';
+        document.getElementById('backdrop').style.display = 'block';
+    };
+
+function checkImage() {
+    // 获取gameStartPrompt元素并隐藏
+    var gameStart = document.getElementById("gameStartPrompt");
+    gameStart.style.display = "none";
+
+    // 显示模态框
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+
+    // 获取关闭按钮并添加点击事件
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+        gameStart.style.display = "block"; // 当关闭模态框时重新显示gameStartPrompt
+    }
+}
+
+// 点击模态框外部时关闭模态框并重新显示gameStartPrompt
+window.onclick = function(event) {
+    var modal = document.getElementById("myModal");
+    var gameStart = document.getElementById("gameStartPrompt");
+    if (event.target == modal) {
+        modal.style.display = "none";
+        gameStart.style.display = "block";
+    }
+}
+
+    </script>
+
+
+
+
+
 
     <script type="text/javascript">
         var preloader;
