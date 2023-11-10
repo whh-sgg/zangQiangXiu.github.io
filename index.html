@@ -3,19 +3,12 @@
 
 <head>
     <meta charset="utf-8">
+    <title>合成藏羌绣小纹样</title>
 
-    <!-- 微信搜索公众号『 程序员鱼皮 』，学习编程技术，发现更多好玩的项目！ -->
-    <title>合成大西瓜</title>
-
-    <!--http://www.html5rocks.com/en/mobile/mobifying/-->
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1" />
-
-    <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="format-detection" content="telephone=no">
-
-    <!-- force webkit on 360 -->
     <meta name="renderer" content="webkit" />
     <meta name="force-rendering" content="webkit" />
     <!-- force edge on IE -->
@@ -30,38 +23,7 @@
     <!-- force screen orientation on some browser -->
     <meta name="screen-orientation" content="" />
     <meta name="x5-orientation" content="">
-
-    <!--fix fireball/issues/3568 -->
-    <!--<meta name="browsermode" content="application">-->
     <meta name="x5-page-mode" content="app">
-
-    <!--<link rel="apple-touch-icon" href=".png" />-->
-    <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
-
-
-    <!-- <script>
-        pushHistory();
-        window.addEventListener("popstate", function(e) {
-
-        }, false);
-        function pushHistory() {
-            var state = {
-                title: "",
-                url: window.location.href
-            };
-            window.history.pushState(state, state.title, state.url);
-        }
-    </script> -->
-<!--    <script type="text/javascript">
-        var ua = navigator.userAgent.toLowerCase(); //获取判断用的对象
-        //判断是否是微信下访问
-        if (ua.match(/MicroMessenger/i) == "micromessenger") {
-            // if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-            location.href = "https://mp.weixin.qq.com/s/m0U0L-vnD0Gu8aPJ2vcPoA";
-            // }
-        }
-    </script>-->
-
     <link rel="stylesheet" type="text/css" href="style-mobile.css" />
 
 </head>
@@ -69,6 +31,7 @@
 
 
 <body style="margin: 0; background: #ddd;" align="center">
+
     <div style="align:center;display: none"><img src="res/share.jpg" width="10%" /></div>
 
     <div id="canvasDiv" style="width:100%;height:100%;">
@@ -88,16 +51,20 @@
         loading......0%
     </div>
 
-    <div id="splash">
-        <!-- <div class="progress-bar stripes"> -->
-        <!-- <span style="width: 0%"></span> -->
-        <!-- </div> -->
-    </div>
+    <div id="splash"></div>
 
     <div id="loadingImg" style="top:45%;width: 100%;position:absolute; ">
         <img src="res/loading.gif" width="7%" height="7%" />
     </div>
 
+
+    <div id="promptBackground" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></div>
+    <div id="gameStartPrompt">
+        <h1>合成藏羌绣小纹样</h1>
+        <p>游戏即将开始</p>
+        <button onclick="startGame()">开始游戏</button>
+        <button onclick="checkImage()">了解藏羌绣</button>
+    </div>
 
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -134,12 +101,6 @@
 
 
 
-    <div id="gameStartPrompt">
-        <h1>合成藏羌绣小纹样</h1>
-        <p>游戏即将开始</p>
-        <button onclick="startGame()">开始游戏</button>
-        <button onclick="checkImage()">了解藏羌绣</button>
-    </div>
 
 
 
@@ -150,19 +111,25 @@
 
 
     <script type="text/javascript">
+    var gameStarted = false;
     function startGame() {
+     gameStarted = true;
         document.getElementById('gameStartPrompt').style.display = 'none';
-        document.getElementById('backdrop').style.display = 'none';
 
+        if (typeof window.boot === 'function') {
+        window.boot();
+        }
     }
-    window.onload = function() {
+window.addEventListener('load', function() {
+    if (!gameStarted) {
         document.getElementById('gameStartPrompt').style.display = 'block';
-        document.getElementById('backdrop').style.display = 'block';
-    };
+    }
+});
+
 
 function checkImage() {
     // 获取gameStartPrompt元素并隐藏
-    var gameStart = document.getElementById("gameStartPrompt");
+     var gameStart = document.getElementById("gameStartPrompt");
     gameStart.style.display = "none";
 
     // 显示模态框
@@ -186,7 +153,6 @@ window.onclick = function(event) {
         gameStart.style.display = "block";
     }
 }
-
     </script>
 
 
@@ -349,15 +315,12 @@ window.onclick = function(event) {
             var engineLoaded = function() {
                 document.body.removeChild(cocos2d);
                 cocos2d.removeEventListener('load', engineLoaded, false);
-                window.boot();
+
             };
             cocos2d.addEventListener('load', engineLoaded, false);
             document.body.appendChild(cocos2d);
         })();
     </script>
-
-
-
 
 </body>
 
