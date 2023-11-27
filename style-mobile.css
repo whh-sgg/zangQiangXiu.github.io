@@ -87,7 +87,7 @@ p.footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('back.jpg'); /* 使用自定义图片作为背景 */
+    background-image: url('background.jpg'); /* 使用自定义图片作为背景 */
     background-size: 100%;
 }
 
